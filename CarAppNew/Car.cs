@@ -51,7 +51,7 @@
         //Metode til at hente alle ture foretaget med bilen.
         public List<Trip> GetTrips() => _trips;
 
-        //Insæter listen af ture og returnerer en ny liste med kun de ture, der matcher den angivne dato.
+        //Indsætter listen af ture og returnerer en ny liste med kun de ture, der matcher den angivne dato.
         public List<Trip> GetTripsByDate(DateTime date)
         {
             List<Trip> result = new List<Trip>();
@@ -62,6 +62,22 @@
                     result.Add(trip);
                 }
             }
+            return result;
+        }
+
+        //Indsætter listen af ture og returnerer en ny liste med kun de ture, der starter inden for det angivne tidsinterval.
+        public List<Trip> GetTripsInTimeInterval(DateTime start, DateTime end)
+        {
+            List<Trip> result = new List<Trip>();
+
+            foreach (Trip trip in _trips)
+            {
+                if (trip.StartTime >= start && trip.StartTime <= end)
+                {
+                    result.Add(trip);
+                }
+            }
+
             return result;
         }
     }

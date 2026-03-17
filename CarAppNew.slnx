@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="CarAppNew/CarAppNew.csproj" />
+  <Project Path="CarAppTests/CarAppTests.csproj" Id="c69dcc18-ef70-41ef-93c6-007ac74429f1" />
 </Solution>
