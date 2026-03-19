@@ -49,8 +49,9 @@ namespace CarAppNew
             return $"Dato: {TripDate:dd-MM-yyyy} | " +
             $"Distance: {Distance} km | " +
             $"Varighed: {CalculateDuration()} | " +
-            $"Brændstof: {CalculateFuelUsed():F2} L | " +
-            $"Pris (14 kr/L): {CalculateTripPrice(_car.FuelType == FuelType.Benzin ? 14 : 1):F2} kr";
+            $"Brændstof: {CalculateFuelUsed():F2} {(_car.FuelType == FuelType.Benzin ? "L" : "Kw")} | " +
+            $"Pris (14 kr/L): {_car.CalculateTrip(CalculateFuelUsed()):F2} kr" +
+            $"fuel level: {_car.fuelLevel}";
         }
     }
 }

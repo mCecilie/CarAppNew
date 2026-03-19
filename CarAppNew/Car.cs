@@ -10,21 +10,22 @@
         public FuelType FuelType { get; protected set; }
         public double KmPerLiter { get; protected set; }
         public double Odometer { get; private set; }
+        public double fuelLevel { get; protected set; }
 
         // Opretter en privat liste af Trip objekter, som vil holde styr på alle ture foretaget med bilen.
         private List<Trip> _trips = new List<Trip>();
         private Engine _engine;
 
         //Opretter en kontruktør for Car klassen, som tager alle nødvendige parametre for at initialisere en bil.
-        public Car(string brand, string model, int year,
-        string licensePlate, FuelType fuelType, double kmPerLiter)
+        public Car(string brand, string model, int year, string licensePlate, FuelType fuelType, double Enhederperliter, double FuelLevel)
         {
             Brand = brand;
             Model = model;
             Year = year;
             LicensePlate = licensePlate;
             FuelType = fuelType;
-            KmPerLiter = kmPerLiter;
+            KmPerLiter = Enhederperliter;
+            fuelLevel = FuelLevel;
             _engine = new Engine();
         }
 
@@ -35,13 +36,15 @@
 
         // Abstrakt metode: underklassen definerer, hvordan energi opdateres public abstract void UpdateEnergyLevel(double km);
         public abstract void UpdateEnergyLevel(double km);
+        public abstract double CalculateTrip(double distance);
 
         //metode til at registrere en ny køretur for bilen.
         //Den tager et Trip objekt som parameter og opdaterer bilens odometer og tilføjer til liste over køreture.
         public void Drive(Trip newTrip)
         {
-            if (newTrip.Car == this)
+            if (newTrip.Car == this && fuelLevel > 0)
             {
+                fuelLevel -= newTrip.CalculateFuelUsed();
                 Odometer += newTrip.Distance;
                 _trips.Add(newTrip);
             }

@@ -6,22 +6,32 @@ namespace CarAppNew
 {
     internal class ElectricCar : Car
     {
-        protected double TankCapacity { get; private set; }
-        public double FuelLevel { get; }
+        protected double BatteryCapacity { get; private set; }
         public double Kmperwh { get; }
 
-        public ElectricCar(string brand, string model, int year, string licensePlate, double kmperwh, double tankCapacity)
-                : base(brand, model, year, licensePlate, FuelType.Electric, kmperwh)
+        private double pris = 0.1;
+
+        public ElectricCar(string brand, string model, int year, string licensePlate, double kmperwh, double batteryCapacity)
+                : base(brand, model, year, licensePlate, FuelType.Electric, kmperwh, batteryCapacity)
         {
-            TankCapacity = tankCapacity;
-            Kmperwh = kmperwh;
-            FuelLevel = tankCapacity;
+           // this.batteryLevel = batteryCapacity; //HVORFOR SKAL VI BRUGE DEN?????
+            this.Kmperwh = kmperwh;
+            this.BatteryCapacity = batteryCapacity;
         }
 
-
+        public override double CalculateTrip(double fuelused)
+        {
+            return fuelused * pris; 
+        }
         public override void UpdateEnergyLevel(double km)
         {
-            throw new NotImplementedException();
+            fuelLevel -= km / Kmperwh;
+        }
+        
+        public void Charge()
+        {
+            this.fuelLevel = BatteryCapacity; 
+            
         }
     }
 }
