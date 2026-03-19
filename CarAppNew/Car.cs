@@ -7,8 +7,8 @@
         public string Model { get; private set; }
         public int Year { get; private set; }
         public string LicensePlate { get; private set; }
-        public FuelType FuelType { get; private set; }
-        public double KmPerLiter { get; private set; }
+        public FuelType FuelType { get; protected set; }
+        public double KmPerLiter { get; protected set; }
         public double Odometer { get; private set; }
 
         // Opretter en privat liste af Trip objekter, som vil holde styr på alle ture foretaget med bilen.
@@ -27,6 +27,7 @@
             KmPerLiter = kmPerLiter;
             _engine = new Engine();
         }
+
 
         //Tjekker om bilen er tændt eller slukket ved at kalde på Engine klassen.
         public void TurnOnEngine() => _engine.Start();

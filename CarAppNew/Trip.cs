@@ -1,4 +1,6 @@
-﻿namespace CarAppNew
+﻿using Microsoft.VisualBasic.FileIO;
+
+namespace CarAppNew
 {
     public class Trip
 
@@ -48,7 +50,7 @@
             $"Distance: {Distance} km | " +
             $"Varighed: {CalculateDuration()} | " +
             $"Brændstof: {CalculateFuelUsed():F2} L | " +
-            $"Pris (14 kr/L): {CalculateTripPrice(14):F2} kr";
+            $"Pris (14 kr/L): {CalculateTripPrice(_car.FuelType == FuelType.Benzin ? 14 : 1):F2} kr";
         }
     }
 }
