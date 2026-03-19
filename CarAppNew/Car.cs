@@ -1,6 +1,6 @@
 ﻿namespace CarAppNew
 {
-    public class Car
+    public abstract class Car
     {
         //Opretter mine variabler og properties for Car klassen.
         public string Brand { get; private set; }
@@ -31,6 +31,9 @@
         //Tjekker om bilen er tændt eller slukket ved at kalde på Engine klassen.
         public void TurnOnEngine() => _engine.Start();
         public void TurnOffEngine() => _engine.Stop();
+
+        // Abstrakt metode: underklassen definerer, hvordan energi opdateres public abstract void UpdateEnergyLevel(double km);
+        public abstract void UpdateEnergyLevel(double km);
 
         //metode til at registrere en ny køretur for bilen.
         //Den tager et Trip objekt som parameter og opdaterer bilens odometer og tilføjer til liste over køreture.

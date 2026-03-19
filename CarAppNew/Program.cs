@@ -14,12 +14,12 @@
             // Opretter ture – alle er fuldt initialiseret via konstruktøren
             List<Trip> trips = new List<Trip>
 
-// Trip-objekter oprettes med alle nødvendige data, og Car-objektet er en del af konstruktionen
-{
-new Trip(myCar, 50, DateTime.Now, DateTime.Now.AddHours(1)),
-new Trip(myCar, 30, DateTime.Now, DateTime.Now.AddMinutes(30)),
-new Trip(myCar, 100, DateTime.Now, DateTime.Now.AddHours(2))
-};
+            // Trip-objekter oprettes med alle nødvendige data, og Car-objektet er en del af konstruktionen
+            {
+            new Trip(myCar, 50, DateTime.Now, DateTime.Now.AddHours(1)),
+            new Trip(myCar, 30, DateTime.Now, DateTime.Now.AddMinutes(30)),
+            new Trip(myCar, 100, DateTime.Now, DateTime.Now.AddHours(2))
+            };
 
             // Drive tilføjer én tur ad gangen og tjekker bil-tilhørsforhold
             foreach (var trip in trips)
