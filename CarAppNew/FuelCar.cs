@@ -15,11 +15,13 @@ namespace CarAppNew
 
         public string RegistrationNumber => LicensePlate;
 
-        public double Price => 512;
+        private double _price;
+        public double Price => _price;
 
-        public FuelCar(string brand, string model, int year, string licensePlate, double kmPerLiter, double tankCapacity)
+        public FuelCar(string brand, string model, int year, string licensePlate, double kmPerLiter, double tankCapacity, int price)
                 : base(brand, model, year, licensePlate, FuelType.Benzin, kmPerLiter, tankCapacity)
-        { 
+        {
+            this._price = price;
             this.TankCapacity = tankCapacity; 
             this.FuelLevel = tankCapacity; 
         }

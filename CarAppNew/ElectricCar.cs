@@ -10,16 +10,20 @@ namespace CarAppNew
         protected double BatteryCapacity { get; private set; }
         public double Kmperwh { get; }
 
-        public double Price => 19203;
+        private double _price;
+
+        // når man bruger => vil den opdatere sig med værdien, så Price kigger ALTID på _price når den bliver kaldt og er ALTID det samme
+        public double Price => _price;
 
         public string RegistrationNumber => LicensePlate;
 
         private double Fuelpris = 0.1;
 
-        public ElectricCar(string brand, string model, int year, string licensePlate, double kmperwh, double batteryCapacity)
+        public ElectricCar(string brand, string model, int year, string licensePlate, double kmperwh, double batteryCapacity, int price)
                 : base(brand, model, year, licensePlate, FuelType.Electric, kmperwh, batteryCapacity)
         {
-           // this.batteryLevel = batteryCapacity; //HVORFOR SKAL VI BRUGE DEN?????
+            this._price = price;
+            // this.batteryLevel = batteryCapacity; //HVORFOR SKAL VI BRUGE DEN?????
             this.Kmperwh = kmperwh;
             this.BatteryCapacity = batteryCapacity;
         }

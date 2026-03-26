@@ -10,7 +10,7 @@
         {
             // Opret en ny bil
             FuelCar myCar = new FuelCar("Toyota", "Corolla", 2020, "AB12345", 22.5,200);
-            ElectricCar Elbil = new ElectricCar("Toyota", "Corolla", 2020, "AB12345", 22.5, 100);
+            ElectricCar Elbil = new ElectricCar("Toyota", "Corolla", 2020, "AB12345", 22.5, 100, 5000);
             myCar.TurnOnEngine();
             Elbil.TurnOnEngine();
             // Opretter ture – alle er fuldt initialiseret via konstruktøren
@@ -43,7 +43,7 @@
             Console.WriteLine($"fuelcar ny charge: {myCar.fuelLevel}");
 
             FuelCar fc = new FuelCar("Toyota", "Corolla", 2022, "AB12345", 12, 45000);
-            ElectricCar ec = new ElectricCar("Tesla", "Model 3", 2023, "CD67890", 75, 380000);
+            ElectricCar ec = new ElectricCar("Tesla", "Model 3", 2023, "CD67890", 75, 380000, 1500);
 
 
 
