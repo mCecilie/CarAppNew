@@ -1,15 +1,20 @@
-﻿using System;
+﻿using CarAppNew.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CarAppNew
 {
-    internal class ElectricCar : Car
+    internal class ElectricCar : Car, IInsurable, ISellable
     {
         protected double BatteryCapacity { get; private set; }
         public double Kmperwh { get; }
 
-        private double pris = 0.1;
+        public double Price => 19203;
+
+        public string RegistrationNumber => LicensePlate;
+
+        private double Fuelpris = 0.1;
 
         public ElectricCar(string brand, string model, int year, string licensePlate, double kmperwh, double batteryCapacity)
                 : base(brand, model, year, licensePlate, FuelType.Electric, kmperwh, batteryCapacity)
@@ -21,7 +26,7 @@ namespace CarAppNew
 
         public override double CalculateTrip(double fuelused)
         {
-            return fuelused * pris; 
+            return fuelused * Fuelpris; 
         }
         public override void UpdateEnergyLevel(double km)
         {
@@ -32,6 +37,16 @@ namespace CarAppNew
         {
             this.fuelLevel = BatteryCapacity; 
             
+        }
+
+        public double GetInsuranceRate()
+        {
+            return 12;
+        }
+
+        public string GetSalesSummary()
+        {
+            return $"Bilen er en ElectricCar koster {Price} og har en insurance rate på {GetInsuranceRate()} og har licenseplate {LicensePlate}";
         }
     }
 }

@@ -1,17 +1,21 @@
-﻿using System;
+﻿using CarAppNew.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CarAppNew
 {
-    internal class FuelCar : Car
+    internal class FuelCar : Car, IInsurable, ISellable
     {
 
         protected double TankCapacity { get; private set; }
         public double FuelLevel { get; private set; }
 
-        private double pris = 14;
+        private double Fuelpris = 14;
 
+        public string RegistrationNumber => LicensePlate;
+
+        public double Price => 512;
 
         public FuelCar(string brand, string model, int year, string licensePlate, double kmPerLiter, double tankCapacity)
                 : base(brand, model, year, licensePlate, FuelType.Benzin, kmPerLiter, tankCapacity)
@@ -22,7 +26,7 @@ namespace CarAppNew
 
         public override double CalculateTrip(double fuelused)
         {
-            return fuelused * pris;
+            return fuelused * Fuelpris;
         }
 
         public override void UpdateEnergyLevel(double km)
@@ -34,6 +38,16 @@ namespace CarAppNew
         {
             fuelLevel = TankCapacity;
 
+        }
+
+        public double GetInsuranceRate()
+        {
+            return 23;
+        }
+
+        public string GetSalesSummary()
+        {
+            return $"Bilen er en FuelCar koster {Price} og har en insurance rate på {GetInsuranceRate()} og har licenseplate {LicensePlate}";
         }
     }
 }

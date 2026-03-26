@@ -8,7 +8,7 @@ namespace CarAppNew
     {
         protected double TankCapacity { get; private set; }
         public double DieselForbrug { get; }
-        private double pris = 11;
+        private double Fuelpris = 11;
 
         public Brintbil(string brand, string model, int year, string licensePlate, double dieselForbrug, double tankCapacity)
                 : base(brand, model, year, licensePlate, FuelType.Diesel, dieselForbrug, tankCapacity)
@@ -20,7 +20,7 @@ namespace CarAppNew
 
         public override double CalculateTrip(double fuelused)
         {
-            return fuelused * pris;
+            return fuelused * Fuelpris;
         }
 
         public override void UpdateEnergyLevel(double km)

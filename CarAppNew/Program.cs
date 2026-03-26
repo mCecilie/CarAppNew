@@ -1,5 +1,6 @@
 ﻿namespace CarAppNew
 {
+    using CarAppNew.Interfaces;
     using System;
     using System.Collections.Generic;
 
@@ -38,42 +39,55 @@
                 Console.WriteLine($"{trip.GetTripDetails()}");
             }
 
-            Console.WriteLine("\n\n===Trips el car===");
-            foreach (var trip in tripsElbil)
-            {
-                Elbil.Drive(trip);
-                Elbil.UpdateEnergyLevel(trip.Distance);
-                Console.WriteLine($"Trip med fuelcar:{trip.GetTripDetails()}");
-            }
-
-            Elbil.Charge();
-            Console.WriteLine($"Elbil ny charge: {Elbil.fuelLevel}");
-            Console.WriteLine("\n\n===Trips el car===");
-            foreach (var trip in tripsElbil)
-            {
-                Elbil.Drive(trip);
-                Elbil.UpdateEnergyLevel(trip.Distance); // bør nok ligges over i drive funktionen
-                Console.WriteLine($"Trip med elbil:{trip.GetTripDetails()}");
-            }
-
             myCar.refuel();
             Console.WriteLine($"fuelcar ny charge: {myCar.fuelLevel}");
 
-            List<Car> cars = new List<Car>(); 
-            cars.Add(new FuelCar("Toyota", "Corolla", 2020, "AB12345", 50.0, 18.0)); 
-            cars.Add(new ElectricCar("Tesla", "Model 3", 2022, "EL99999", 75.0, 6.5)); 
-            cars.Add(new Brintbil("Toyota", "Corolla", 2020, "AB12345", 16.5, 300));
-            foreach (Car car in cars) 
-            { 
-                car.TurnOnEngine(); 
-                Trip trip = new Trip(car, 60, DateTime.Now, DateTime.Now.AddHours(1)); 
-                car.Drive(trip);
-                car.UpdateEnergyLevel(trip.Distance);
-                Console.WriteLine($"{car.Brand} odometer: {car.Odometer} km km i tanken tilbage: {car.fuelLevel} pris: {car.CalculateTrip(trip.CalculateFuelUsed()):F2}");
+            FuelCar fc = new FuelCar("Toyota", "Corolla", 2022, "AB12345", 12, 45000);
+            ElectricCar ec = new ElectricCar("Tesla", "Model 3", 2023, "CD67890", 75, 380000);
+
+
+
+
+
+
+            List<ISellable> forSale = new List<ISellable> { fc, ec };
+            House h = new House("Strandvejen 42, 2900 Hellerup", 1965, 4200000, "1234-AB");
+
+
+
+            forSale.Add(h);
+
+            foreach (ISellable s in forSale)
+            {
+                Console.WriteLine(s.GetSalesSummary());
             }
+            // Beregn samlet salgspris 
+            double total = 0;
+            foreach (ISellable s in forSale)
+                total += s.Price;
+            Console.WriteLine($"Samlet beholdningsværdi: {total:N0} kr");
 
 
+            /////////////////
+            ///Insurance
+            ///
 
+            List<IInsurable> insured = new List<IInsurable> { fc, ec };
+            insured.Add(h);
+
+            double totalinsurance = 0;
+            double totalinsurancerate = 0;
+            foreach (IInsurable i in insured)
+            {
+                Console.WriteLine($"------ Nyt Object -----");
+                Console.WriteLine($"{i.RegistrationNumber}: {i.GetInsuranceRate():F1}%");
+                Console.WriteLine($"Insurance pris {i.Price*(i.GetInsuranceRate()/100)}");
+                totalinsurance += i.Price * (i.GetInsuranceRate() / 100);
+                totalinsurancerate += i.GetInsuranceRate();
+            }
+            Console.WriteLine($"------ Beregning -----");
+            Console.WriteLine($"Insurance pris total {totalinsurance:N0}");
+            Console.WriteLine($"Insurance rate gennemsnit {totalinsurancerate/insured.Count()}%");
         }
     }
 }
