@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CarAppNew
+namespace CarApp.Core.Models
 {
     // Creates an enumeration called FuelType with the following values: Benzin, Diesel, Electric, Hybrid.
     public enum FuelType

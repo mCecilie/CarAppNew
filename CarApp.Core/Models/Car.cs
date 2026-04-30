@@ -1,4 +1,7 @@
-﻿namespace CarAppNew
+﻿using System;
+using System.Collections.Generic;
+
+namespace CarApp.Core.Models
 {
     public abstract class Car
     {

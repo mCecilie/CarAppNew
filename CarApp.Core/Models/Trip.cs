@@ -1,7 +1,7 @@
-﻿using CarApp.Core.Models;
-using Microsoft.VisualBasic.FileIO;
+﻿
+using System;
 
-namespace CarAppNew
+namespace CarApp.Core.Models
 {
     public class Trip
 

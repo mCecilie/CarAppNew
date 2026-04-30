@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CarAppNew.Interfaces
+namespace CarApp.Core.Interfaces
 {
     public interface ISellable
     {

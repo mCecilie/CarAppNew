@@ -1,11 +1,12 @@
-﻿using CarAppNew.Interfaces;
+﻿using CarApp.Core;
+using CarApp.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CarAppNew
+namespace CarApp.Core.Models
 {
-    internal class ElectricCar : Car, IInsurable, ISellable
+    public class ElectricCar : Car, IInsurable, ISellable
     {
         protected double BatteryCapacity { get; private set; }
         public double Kmperwh { get; }
@@ -51,6 +52,38 @@ namespace CarAppNew
         public string GetSalesSummary()
         {
             return $"Bilen er en ElectricCar koster {Price} og har en insurance rate på {GetInsuranceRate()} og har licenseplate {LicensePlate}";
+        }
+
+        public override string ToString()
+        {
+            return $"ElectricCar,{Brand},{Model},{Year},{LicensePlate},{Kmperwh},{BatteryCapacity},{Price}";
+        }
+
+        // ElectricCar.cs — tilføj denne statiske metode
+
+        public static ElectricCar FromString(string data)
+
+        {
+
+            string[] parts = data.Split(',');
+
+            return new ElectricCar(
+
+            brand: parts[1],
+
+            model: parts[2],
+
+            year: int.Parse(parts[3]),
+
+            licensePlate: parts[4],
+            kmperwh: double.Parse(parts[5]),
+
+            batteryCapacity: double.Parse(parts[6]),
+            price: int.Parse(parts[7])
+
+
+            );
+
         }
     }
 }

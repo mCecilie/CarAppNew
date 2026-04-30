@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CarAppNew
+namespace CarApp.Core.Models
 {
-    internal class Brintbil : Car
+    public class Brintbil : Car
     {
         protected double TankCapacity { get; private set; }
         public double DieselForbrug { get; }

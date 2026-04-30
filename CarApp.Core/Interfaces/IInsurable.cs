@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CarAppNew.Interfaces
+namespace CarApp.Core.Interfaces
 {
-    internal interface IInsurable
+    public interface IInsurable
     {
         string RegistrationNumber { get; }
 

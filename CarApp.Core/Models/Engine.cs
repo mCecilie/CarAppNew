@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CarAppNew
+namespace CarApp.Core.Models
 {
     //Opretter nuy Engine klasse, som vil blive brugt i Car klassen til at håndtere motorens tilstand (tændt eller slukket).
     public class Engine
